@@ -12,13 +12,14 @@
 #import "NSObject+ComposeM4a.h"
 #import "NSObject+File.h"
 
-@interface MyRecorder()<AVAudioRecorderDelegate,AVAudioPlayerDelegate>
+@interface MyRecorder()<AVAudioRecorderDelegate>
 @property (strong,nonatomic) NSTimer * timer;
 @property (strong,nonatomic) NSTimer * volumeTimer;
+
+
 //@property (strong,nonatomic) AVAudioSession* session;
 @property (assign,nonatomic)NSInteger second;// 计时秒数
 @property (strong,nonatomic) AVAudioRecorder* recorder;
-@property (strong,nonatomic)AVAudioPlayer* player;
 
 @end
 
@@ -86,30 +87,8 @@
     _second = second;
     [_delegate recorder:self secondChanged:second];
 }
-// MARK: - Public
-/// 试听
--(void)playTest{
-    NSError* error=nil;
-    
-    //开启接近监视(靠近耳朵的时候听筒播放,离开的时候扬声器播放)
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateChange:)name:UIDeviceProximityStateDidChangeNotification object:nil];
-    
-    _player=[[AVAudioPlayer alloc]initWithContentsOfURL:_coalescentURL error:&error];
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    _player.delegate=self;
-    if(error ==nil){
-        [_player prepareToPlay];
-        [_player play];
-        self.state =MyRecorderStatePlaying;
-    }
-}
--(void)stopPlayTest{
-    if(self.state == MyRecorderStatePlaying && self.player != nil){
-        [_player stop];
-        self.state=MyRecorderStatePaused;
-    }
-}
+
+
 // MARK: - 录音控制
 // 开始/继续录音
 -(void)beginOrResumeRecord{
@@ -258,27 +237,6 @@
     double avgPowerForChannel = pow(10, (0.05 * [self.recorder averagePowerForChannel:0]));
     [_delegate recorder:self powerChanged:avgPowerForChannel];
 }
-#pragma mark - 处理近距离监听触发事件
--(void)sensorStateChange:(NSNotificationCenter *)notification;
-{
-    //如果此时手机靠近面部放在耳朵旁，那么声音将通过听筒输出，并将屏幕变暗（省电啊）
-    if ([[UIDevice currentDevice] proximityState] == YES)//黑屏
-    {
-//        NSLog(@"Device is close to user");
-        // 通过听筒播放
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-        
-    }
-    else//没黑屏幕
-    {
-//        NSLog(@"Device is not close to user");
-        // 用扬声器播放
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-        if (![self.player isPlaying]) {//没有播放了，也没有在黑屏状态下，就可以把距离传感器关了
-            [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
-        }
-    }
-}
 
 // MARK: - AVAudioRecorderDelegate
 /// 录音完成
@@ -288,14 +246,6 @@
 /// 编码发生错误
 - (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError * __nullable)error{
     NSLog(@"%@",error);
-}
-// MARK: -//AVAudioPlayerDelegate
-/// 播放完成
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-}
-/// 解码错误
-- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError * __nullable)error{
-    
 }
 
 @end

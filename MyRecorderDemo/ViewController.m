@@ -11,10 +11,11 @@
 #import "NSTimer+Pause.h"
 #import "WaveView.h"
 #import "MyRecorder.h"
+#import "OhPlayer.h"
 
 int static maxNumbers = 10;
 
-@interface ViewController ()<MyRecorderDelegate>
+@interface ViewController ()<MyRecorderDelegate,OhPlayerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
 @property (weak, nonatomic) IBOutlet UILabel *lbTime;
@@ -27,6 +28,8 @@ int static maxNumbers = 10;
 @property (weak, nonatomic) IBOutlet UIProgressView *pvMeter;
 @property (strong,nonatomic) MyRecorder* recorder;
 @property(strong,nonatomic)NSMutableArray<NSNumber*>* meters;
+@property (strong,nonatomic) OhPlayer* player;
+
 @end
 
 @implementation ViewController
@@ -37,6 +40,11 @@ int static maxNumbers = 10;
     _recorder= [MyRecorder sharedInstance];
     _recorder.delegate= self;
     _recorder.state= MyRecorderStateIsReady;
+    
+    
+    _player = [OhPlayer sharedInstance];
+    _player.delegate = self;
+    _player.state = OhPlayerStateIsReady;
 
 }
 
@@ -46,7 +54,11 @@ int static maxNumbers = 10;
 }
 // MARK: - Actions
 - (IBAction)previewAction:(id)sender {
-    [_recorder playTest];
+    if(_player.state == OhPlayerStatePlaying){
+        [_player stopPlay];
+    }else{
+        [_player play:_recorder.coalescentURL];
+    }
 }
 
 - (IBAction)redoAction:(id)sender {
@@ -152,5 +164,32 @@ int static maxNumbers = 10;
     [_meters addObject:@(power)];
 
     [_waveView drawValues:_meters];
+}
+// MARK: - OhPlayerDelegate
+-(void)player:(OhPlayer *)player stateChanged:(OhPlayerState)state{
+    switch (state){
+        case OhPlayerStateIsReady:
+            break;
+        case OhPlayerStatePlaying:
+
+            _lbTime.hidden= NO;
+            _btnBegin.selected = NO;
+            
+            _btnPreview.selected= YES;
+            
+            _lbMessage.text= nil;
+            
+            break;
+        case OhPlayerStatePause:
+        case OhPlayerStateStopped:
+            self.recorder.state = MyRecorderStatePaused;
+            break;
+        default:
+            break;
+            
+    }
+}
+-(void)player:(OhPlayer *)player playingTimeChanged:(double)second{
+
 }
 @end

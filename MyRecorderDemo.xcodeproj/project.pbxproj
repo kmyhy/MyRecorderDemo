@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1270823A1EB8737100B9B142 /* MyRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 127082391EB8737100B9B142 /* MyRecorder.m */; };
+		127082551EB8901500B9B142 /* MyRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 127082541EB8901500B9B142 /* MyRecorder.m */; };
+		127082581EB8901E00B9B142 /* OhPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 127082571EB8901E00B9B142 /* OhPlayer.m */; };
 		1289F4441EB3208100270755 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1289F4431EB3208100270755 /* WaveView.m */; };
 		128D7F391EAED630006F7FB9 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 128D7F381EAED630006F7FB9 /* backButton@2x.png */; };
 		128D7F411EAF2E02006F7FB9 /* NSObject+ComposeM4a.m in Sources */ = {isa = PBXBuildFile; fileRef = 128D7F401EAF2E02006F7FB9 /* NSObject+ComposeM4a.m */; };
@@ -22,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		127082381EB8737100B9B142 /* MyRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRecorder.h; sourceTree = "<group>"; };
-		127082391EB8737100B9B142 /* MyRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRecorder.m; sourceTree = "<group>"; };
+		127082531EB8901500B9B142 /* MyRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRecorder.h; sourceTree = "<group>"; };
+		127082541EB8901500B9B142 /* MyRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRecorder.m; sourceTree = "<group>"; };
+		127082561EB8901E00B9B142 /* OhPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OhPlayer.h; sourceTree = "<group>"; };
+		127082571EB8901E00B9B142 /* OhPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OhPlayer.m; sourceTree = "<group>"; };
 		1289F4421EB3208100270755 /* WaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveView.h; sourceTree = "<group>"; };
 		1289F4431EB3208100270755 /* WaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveView.m; sourceTree = "<group>"; };
 		128D7F381EAED630006F7FB9 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
@@ -80,10 +83,12 @@
 				12A802721EADF07E00FFEE38 /* AppDelegate.m */,
 				12A802741EADF07E00FFEE38 /* ViewController.h */,
 				12A802751EADF07E00FFEE38 /* ViewController.m */,
-				127082381EB8737100B9B142 /* MyRecorder.h */,
-				127082391EB8737100B9B142 /* MyRecorder.m */,
 				1289F4421EB3208100270755 /* WaveView.h */,
 				1289F4431EB3208100270755 /* WaveView.m */,
+				127082561EB8901E00B9B142 /* OhPlayer.h */,
+				127082571EB8901E00B9B142 /* OhPlayer.m */,
+				127082531EB8901500B9B142 /* MyRecorder.h */,
+				127082541EB8901500B9B142 /* MyRecorder.m */,
 				12A802771EADF07E00FFEE38 /* Main.storyboard */,
 				12A8027A1EADF07E00FFEE38 /* Assets.xcassets */,
 				12A8027C1EADF07E00FFEE38 /* LaunchScreen.storyboard */,
@@ -181,9 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1289F4441EB3208100270755 /* WaveView.m in Sources */,
+				127082581EB8901E00B9B142 /* OhPlayer.m in Sources */,
 				128D7F441EAF2ED2006F7FB9 /* NSObject+File.m in Sources */,
 				12A802761EADF07E00FFEE38 /* ViewController.m in Sources */,
-				1270823A1EB8737100B9B142 /* MyRecorder.m in Sources */,
+				127082551EB8901500B9B142 /* MyRecorder.m in Sources */,
 				128D7F411EAF2E02006F7FB9 /* NSObject+ComposeM4a.m in Sources */,
 				12A802871EADF13800FFEE38 /* NSTimer+Pause.m in Sources */,
 				12A802731EADF07E00FFEE38 /* AppDelegate.m in Sources */,
