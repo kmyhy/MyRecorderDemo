@@ -94,7 +94,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zu8-Qs-Bdt">
-                                <rect key="frame" x="87.5" y="444" width="200" height="30"/>
+                                <rect key="frame" x="88" y="444" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="JsV-E7-Aiv"/>
@@ -105,17 +105,33 @@
                                     <action selector="saveAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lRC-cf-i0L"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YF7-X2-mTb">
+                                <rect key="frame" x="77" y="518" width="242" height="2"/>
+                            </progressView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60t-QK-alh" customClass="WaveView">
+                                <rect key="frame" x="28" y="551" width="331" height="96"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="6AN-rP-Jzz"/>
+                                    <constraint firstAttribute="width" constant="331" id="YKM-cx-Duv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="60t-QK-alh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="28" id="0DG-re-isM"/>
                             <constraint firstItem="dEf-af-mbo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Ye-zh-EjE"/>
                             <constraint firstAttribute="trailing" secondItem="12G-Cc-JVN" secondAttribute="trailing" id="9Zh-2Z-CAs"/>
                             <constraint firstItem="5Uj-KB-m77" firstAttribute="top" secondItem="12G-Cc-JVN" secondAttribute="bottom" constant="69" id="CaD-dB-EWc"/>
                             <constraint firstItem="5Uj-KB-m77" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E5H-CM-MgV"/>
+                            <constraint firstItem="YF7-X2-mTb" firstAttribute="top" secondItem="zu8-Qs-Bdt" secondAttribute="bottom" constant="44" id="G79-0D-t8T"/>
                             <constraint firstItem="dEf-af-mbo" firstAttribute="top" secondItem="rcd-CL-MdC" secondAttribute="bottom" constant="42" id="K4Z-Ym-VCq"/>
                             <constraint firstItem="zu8-Qs-Bdt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q5k-t8-nFq"/>
+                            <constraint firstItem="60t-QK-alh" firstAttribute="top" secondItem="YF7-X2-mTb" secondAttribute="bottom" constant="31" id="QbR-QY-dga"/>
+                            <constraint firstAttribute="trailing" secondItem="YF7-X2-mTb" secondAttribute="trailing" constant="56" id="TlS-JV-UnC"/>
                             <constraint firstItem="zu8-Qs-Bdt" firstAttribute="top" secondItem="dEf-af-mbo" secondAttribute="bottom" constant="46" id="gLS-qX-Jdu"/>
                             <constraint firstItem="pfH-lO-v5x" firstAttribute="top" secondItem="12G-Cc-JVN" secondAttribute="bottom" constant="196" id="hLP-7X-qz9"/>
+                            <constraint firstItem="YF7-X2-mTb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="77" id="hkg-1B-wge"/>
                             <constraint firstItem="rcd-CL-MdC" firstAttribute="leading" secondItem="faz-6I-Sos" secondAttribute="trailing" constant="55" id="kPD-yh-VgL"/>
                             <constraint firstItem="rcd-CL-MdC" firstAttribute="top" secondItem="5Uj-KB-m77" secondAttribute="bottom" constant="81" id="lH8-mE-5xN"/>
                             <constraint firstItem="12G-Cc-JVN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qgu-Si-bQw"/>
@@ -134,10 +150,13 @@
                         <outlet property="lbMessage" destination="dEf-af-mbo" id="oT9-qB-YuQ"/>
                         <outlet property="lbTime" destination="5Uj-KB-m77" id="mNZ-ZI-Vsk"/>
                         <outlet property="lbTitle" destination="7C9-mJ-KO9" id="qzl-6t-5Ud"/>
+                        <outlet property="pvMeter" destination="YF7-X2-mTb" id="s1n-TR-QmK"/>
+                        <outlet property="waveView" destination="60t-QK-alh" id="pqZ-ta-w42"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="116" y="122.78860569715144"/>
         </scene>
     </scenes>
     <resources>

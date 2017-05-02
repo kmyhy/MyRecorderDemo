@@ -9,8 +9,10 @@
 #import "ViewController.h"
 
 #import "NSTimer+Pause.h"
-
+#import "WaveView.h"
 #import "MyRecorder.h"
+
+int static maxNumbers = 10;
 
 @interface ViewController ()<MyRecorderDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
@@ -20,8 +22,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnRedo;
 @property (weak, nonatomic) IBOutlet UIButton *btnBegin;
 @property (weak, nonatomic) IBOutlet UILabel *lbMessage;
+@property (weak, nonatomic) IBOutlet WaveView *waveView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
+@property (weak, nonatomic) IBOutlet UIProgressView *pvMeter;
 @property (strong,nonatomic) MyRecorder* recorder;
+@property(strong,nonatomic)NSMutableArray<NSNumber*>* meters;
 @end
 
 @implementation ViewController
@@ -130,5 +135,20 @@
     }else{
         _lbTime.text = [self convertTimeToString:second];
     }
+}
+-(void)recorder:(MyRecorder *)recorder powerChanged:(double)power{
+    if(_meters == nil){
+        _meters = [NSMutableArray<NSNumber*> new];
+        
+        for(int i =0;i<=maxNumbers;i++){
+            [_meters addObject:@(0)];
+        }
+    }
+    if(_meters.count >= maxNumbers){
+        [_meters removeObjectAtIndex:0];
+    }
+    [_meters addObject:@(power)];
+
+    [_waveView drawValues:_meters];
 }
 @end

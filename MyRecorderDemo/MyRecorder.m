@@ -14,6 +14,7 @@
 
 @interface MyRecorder()<AVAudioRecorderDelegate,AVAudioPlayerDelegate>
 @property (strong,nonatomic) NSTimer * timer;
+@property (strong,nonatomic) NSTimer * volumeTimer;
 //@property (strong,nonatomic) AVAudioSession* session;
 @property (assign,nonatomic)NSInteger second;// 计时秒数
 @property (strong,nonatomic) AVAudioRecorder* recorder;
@@ -121,6 +122,7 @@
             
             //这个方法是写了一个NSTimer的拓展类 Category,具体方法在下面附上代码
             [weakSelf.timer continueTimer];
+            [weakSelf.volumeTimer continueTimer];
         }
         
         //设置AVAudioRecorder
@@ -165,12 +167,15 @@
         [weakSelf.recorder setMeteringEnabled:YES];
         //启动或者恢复记录的录音文件
         [weakSelf.recorder record];
+        // 更新麦克风电压值
+        [weakSelf.recorder updateMeters];
         weakSelf.state = MyRecorderStateRecording;
     }];
 }
 /// 暂停
 -(void)pauseRecord{// 暂停的时候会进行录音文件合并
     [self.timer pauseTimer];
+    [self.volumeTimer pauseTimer];
     
     [self.recorder stop];// 实际上暂停也是结束录音，只是录音数据被合并到之前的录音内容里
     
@@ -200,6 +205,7 @@
 -(void)stopRecord{
     
     [self.timer invalidate];
+    [self.volumeTimer invalidate];
     [self.recorder stop];
         
     [self deleteFile:_resultPath];// 删除合并中间文件
@@ -221,7 +227,8 @@
 /// MARK: - 定时器相关
 - (void)startTimer {
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSecond:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateSecond:) userInfo:nil repeats:YES];
+    _volumeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateVolume) userInfo:nil repeats:YES];
 }
 - (void)updateSecond:(NSTimer *)timer {
     
@@ -230,7 +237,14 @@
         
         [self pauseRecord];
     }
+
     [_delegate recorder:self secondChanged:_second];
+    
+}
+- (void)updateVolume{
+    [self.recorder updateMeters];
+    double avgPowerForChannel = pow(10, (0.05 * [self.recorder averagePowerForChannel:0]));
+    [_delegate recorder:self powerChanged:avgPowerForChannel];
 }
 #pragma mark - 处理近距离监听触发事件
 -(void)sensorStateChange:(NSNotificationCenter *)notification;

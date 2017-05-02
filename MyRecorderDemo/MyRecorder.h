@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger,MyRecorderState){
 -(void)recorder:(MyRecorder*)recorder stateChanged:(MyRecorderState)state;
 -(void)recorderGetPermissionFailed:(MyRecorder*)recorder;
 -(void)recorder:(MyRecorder*)recorder secondChanged:(NSInteger)second;
+-(void)recorder:(MyRecorder *)recorder powerChanged:(double)power;
 
 @end
 

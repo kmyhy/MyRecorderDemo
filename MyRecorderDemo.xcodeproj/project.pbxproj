@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1289F4441EB3208100270755 /* WaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1289F4431EB3208100270755 /* WaveView.m */; };
 		128D7F391EAED630006F7FB9 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 128D7F381EAED630006F7FB9 /* backButton@2x.png */; };
 		128D7F411EAF2E02006F7FB9 /* NSObject+ComposeM4a.m in Sources */ = {isa = PBXBuildFile; fileRef = 128D7F401EAF2E02006F7FB9 /* NSObject+ComposeM4a.m */; };
 		128D7F441EAF2ED2006F7FB9 /* NSObject+File.m in Sources */ = {isa = PBXBuildFile; fileRef = 128D7F431EAF2ED2006F7FB9 /* NSObject+File.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1289F4421EB3208100270755 /* WaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveView.h; sourceTree = "<group>"; };
+		1289F4431EB3208100270755 /* WaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveView.m; sourceTree = "<group>"; };
 		128D7F381EAED630006F7FB9 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
 		128D7F3F1EAF2E02006F7FB9 /* NSObject+ComposeM4a.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ComposeM4a.h"; sourceTree = "<group>"; };
 		128D7F401EAF2E02006F7FB9 /* NSObject+ComposeM4a.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ComposeM4a.m"; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				12A802751EADF07E00FFEE38 /* ViewController.m */,
 				128D7F611EAF50E3006F7FB9 /* MyRecorder.h */,
 				128D7F621EAF50E3006F7FB9 /* MyRecorder.m */,
+				1289F4421EB3208100270755 /* WaveView.h */,
+				1289F4431EB3208100270755 /* WaveView.m */,
 				12A802771EADF07E00FFEE38 /* Main.storyboard */,
 				12A8027A1EADF07E00FFEE38 /* Assets.xcassets */,
 				12A8027C1EADF07E00FFEE38 /* LaunchScreen.storyboard */,
@@ -175,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1289F4441EB3208100270755 /* WaveView.m in Sources */,
 				128D7F631EAF50E3006F7FB9 /* MyRecorder.m in Sources */,
 				128D7F441EAF2ED2006F7FB9 /* NSObject+File.m in Sources */,
 				12A802761EADF07E00FFEE38 /* ViewController.m in Sources */,
