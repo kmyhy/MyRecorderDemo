@@ -94,6 +94,13 @@
     if(error ==nil){
         [_player prepareToPlay];
         [_player play];
+        self.state =MyRecorderStatePlaying;
+    }
+}
+-(void)stopPlayTest{
+    if(self.state == MyRecorderStatePlaying && self.player != nil){
+        [_player stop];
+        self.state=MyRecorderStatePaused;
     }
 }
 // MARK: - 录音控制
@@ -227,7 +234,7 @@
 /// MARK: - 定时器相关
 - (void)startTimer {
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateSecond:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSecond:) userInfo:nil repeats:YES];
     _volumeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateVolume) userInfo:nil repeats:YES];
 }
 - (void)updateSecond:(NSTimer *)timer {
@@ -237,9 +244,7 @@
         
         [self pauseRecord];
     }
-
     [_delegate recorder:self secondChanged:_second];
-    
 }
 - (void)updateVolume{
     [self.recorder updateMeters];
