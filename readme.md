@@ -16,10 +16,16 @@ MyRecorder 只有一个类：
 
 ## 初始化
 
-在 ViewController 的 viewDidLoad 中，初始化一个 MyRecorder:
+MyRecorder 使用单例模式，通过 sharedInstance 类方法获得共享实例。实例化之后，需要初始化 delegate 属性和 state 属性，MyRecorder 才能正确工作。
+在 ViewController 的 viewDidLoad 中:
 
-	_recorder= [[MyRecorder alloc]initWithDelegate:self];
-	
+```swift
+    _recorder= [MyRecorder sharedInstance];
+    _recorder.delegate= self;
+    _recorder.state= MyRecorderStateIsReady;
+```
+
+
 ## 实现 MyRecorderDelegate 委托协议
 
 首先在 ViewController 中声明对该协议的实现：

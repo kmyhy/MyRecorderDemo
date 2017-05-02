@@ -39,7 +39,9 @@ typedef NS_ENUM(NSInteger,MyRecorderState){
 
 @property (assign,nonatomic)NSInteger maxRecordSeconds; // 最大允许录制多少秒
 
--(instancetype)initWithDelegate:(id<MyRecorderDelegate>)delegate;
++ (instancetype)sharedInstance;
+
+-(instancetype)init;
 
 /// 试听
 -(void)playTest;

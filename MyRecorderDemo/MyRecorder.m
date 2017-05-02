@@ -24,7 +24,16 @@
 
 @implementation MyRecorder
 
--(instancetype)initWithDelegate:(id<MyRecorderDelegate>)delegate{
++ (instancetype)sharedInstance{
+    static dispatch_once_t onceToken;
+    static id _sInstance;
+    dispatch_once(&onceToken, ^{
+        _sInstance = [[self alloc] init];
+    });
+    
+    return _sInstance;
+}
+-(instancetype)init{
     self = [super init];
     // 因为录音文件比较大，所以我们把它存在Temp文件里，Temp文件里的文件在app重启的时候会自动删除
     self.recordFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent: @"record.m4a"];
@@ -39,8 +48,6 @@
     self.coalescentURL = [NSURL fileURLWithPath:_coalescentPath];
     
     self.maxRecordSeconds = 180;
-    
-    self.delegate= delegate;
     
     self.state = MyRecorderStateIsReady;
     

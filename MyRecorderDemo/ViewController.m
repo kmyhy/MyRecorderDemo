@@ -34,7 +34,9 @@ int static maxNumbers = 10;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _recorder= [[MyRecorder alloc]initWithDelegate:self];
+    _recorder= [MyRecorder sharedInstance];
+    _recorder.delegate= self;
+    _recorder.state= MyRecorderStateIsReady;
 
 }
 
